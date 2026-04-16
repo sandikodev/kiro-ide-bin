@@ -1,4 +1,4 @@
-pkgbase = kiro-ide
+pkgbase = kiro-ide-bin
 	pkgdesc = An agentic AI IDE with spec-driven development from prototype to production
 	pkgver = 0.11.130
 	pkgrel = 2
@@ -38,6 +38,8 @@ pkgbase = kiro-ide
 	depends = systemd-libs
 	depends = util-linux-libs
 	conflicts = kiro
+	conflicts = kiro-ide
+	conflicts = kiro-ide-deb
 	options = !debug
 	options = !strip
 	source = kiro-ide-0.11.130.tar.gz::https://prod.download.desktop.kiro.dev/releases/stable/linux-x64/signed/0.11.130/tar/kiro-ide-0.11.130-stable-linux-x64.tar.gz
@@ -49,4 +51,4 @@ pkgbase = kiro-ide
 	b2sums = 4cba4d51523a883653b28e04abc4a0e444d7672636153be9c99058b4469137ab2c591466d9452c5471e1577c6ce9a54edca28f14c01e6d66b36b72eb53f92bc8
 	b2sums = cdf6d0032fa207b2a54079a5680557cff053daa63ae21ec312272b0b84740ff6a88688f37300ad382c7005d22c1d1abbd083eaa017b9259e6e71fb3f3a7b7838
 
-pkgname = kiro-ide
+pkgname = kiro-ide-bin

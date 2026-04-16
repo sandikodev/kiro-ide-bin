@@ -1,7 +1,6 @@
-# Maintainer: AlphaLynx <alphalynx at alphalynx dot dev>
-# Contributor: sandikodev <sandi at sandikodev dot dev>
+# Maintainer: sandikodev <androxoss at hotmail dot com>
 
-pkgname=kiro-ide
+pkgname=kiro-ide-bin
 pkgver=0.11.130
 pkgrel=2
 epoch=1
@@ -45,12 +44,13 @@ depends=(alsa-lib
          pango
          systemd-libs
          util-linux-libs)
-conflicts=(kiro)
+conflicts=(kiro kiro-ide kiro-ide-deb)
 options=(!debug !strip)
+_pkgname=kiro-ide
 _baseurl=https://prod.download.desktop.kiro.dev/releases/stable/linux-x64/signed/$pkgver/tar
-source=("$pkgname-$pkgver.tar.gz::$_baseurl/$pkgname-$pkgver-stable-linux-x64.tar.gz"
-        "$pkgname-$pkgver-tar-signature.bin::$_baseurl/signature.bin"
-        "$pkgname-$pkgver-certificate.pem::$_baseurl/certificate.pem"
+source=("$_pkgname-$pkgver.tar.gz::$_baseurl/$_pkgname-$pkgver-stable-linux-x64.tar.gz"
+        "$_pkgname-$pkgver-tar-signature.bin::$_baseurl/signature.bin"
+        "$_pkgname-$pkgver-certificate.pem::$_baseurl/certificate.pem"
         "Kiro-LICENSE.txt")
 b2sums=('6702966b9eeff3603e83dd3b83380d057c55778587753500c1af60db0c4edc08d120a5851cf3ef3f2972f7e128abba09e17b9630e81e0c70b8dc4346367f3e33'
         '416a2bc69782564765f36085214766b13ab8ab1a4d3644e75876311637f93e6f735498d6cfb112410b4260ed378de1a9269ab3f3a3bdfd494fac047d91e442c4'
@@ -59,9 +59,9 @@ b2sums=('6702966b9eeff3603e83dd3b83380d057c55778587753500c1af60db0c4edc08d120a58
 
 verify() {
     cd "$SRCDEST"
-    openssl x509 -pubkey -noout -in $pkgname-$pkgver-certificate.pem > kiro-pubkey.pem
-    openssl dgst -sha256 -verify kiro-pubkey.pem -signature $pkgname-$pkgver-tar-signature.bin \
-        $pkgname-$pkgver.tar.gz
+    openssl x509 -pubkey -noout -in $_pkgname-$pkgver-certificate.pem > kiro-pubkey.pem
+    openssl dgst -sha256 -verify kiro-pubkey.pem -signature $_pkgname-$pkgver-tar-signature.bin \
+        $_pkgname-$pkgver.tar.gz
 }
 
 package() {
