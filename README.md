@@ -2,49 +2,48 @@
 
 AUR package for [Kiro IDE](https://kiro.dev) — an agentic AI IDE with spec-driven development from prototype to production.
 
+> **Status**: Pending listing on AUR. Install manually for now (see below).
+
 ## About
 
-This package installs Kiro IDE from the **official upstream `.tar.gz`** provided by Amazon, sourced directly from:
+This package installs Kiro IDE from the **official upstream `.tar.gz`** provided by Amazon:
 
 ```
 https://prod.download.desktop.kiro.dev/releases/stable/linux-x64/signed/$pkgver/tar/
 ```
 
-Unlike the existing `kiro-ide` AUR package which uses `.deb`, this package:
-- Extracts directly from the upstream tar.gz — no `ar`/`dpkg-deb` needed
-- Verifies the download using Amazon's official `certificate.pem` + `signature.bin`
-- Installs to `/opt/Kiro` with a symlink at `/usr/bin/kiro`
+- No `.deb` extraction — uses the upstream tar.gz directly
+- Verifies download with Amazon's `certificate.pem` + `signature.bin`
+- Installs to `/opt/Kiro` with symlink at `/usr/bin/kiro`
 - Includes `.desktop` entries, shell completions (bash/zsh), and icon
+- Auto-updates via GitHub Actions every 6 hours
 
 ## Installation
 
-### Using yay
+### Using paru (directly from GitHub)
 ```bash
-yay -S kiro-ide-bin
+paru -U "https://raw.githubusercontent.com/sandikodev/kiro-ide-bin/main/PKGBUILD"
 ```
 
-### Using paru
-```bash
-paru -S kiro-ide-bin
-```
-
-### Manual
+### Manual (any AUR helper)
 ```bash
 git clone https://github.com/sandikodev/kiro-ide-bin.git
 cd kiro-ide-bin
 makepkg -si
 ```
 
-## Checking for Updates
+### Once listed on AUR
+```bash
+yay -S kiro-ide-bin
+# or
+paru -S kiro-ide-bin
+```
 
-This repo includes `.nvchecker.toml` to track upstream releases:
+## Checking for Updates
 
 ```bash
 nvchecker -c .nvchecker.toml
-```
-
-Or manually:
-```bash
+# or
 curl -s https://prod.download.desktop.kiro.dev/stable/metadata-linux-x64-stable.json | jq -r .currentRelease
 ```
 
