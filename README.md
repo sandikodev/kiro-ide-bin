@@ -20,12 +20,22 @@ https://prod.download.desktop.kiro.dev/releases/stable/linux-x64/signed/$pkgver/
 
 ## Installation
 
-### Using paru (directly from GitHub)
-```bash
-paru -U "https://raw.githubusercontent.com/sandikodev/kiro-ide-bin/main/PKGBUILD"
+### Using paru (custom repo — recommended)
+
+Add to `~/.config/paru/paru.conf`:
+
+```ini
+[sandikodev]
+Url = https://github.com/sandikodev/kiro-ide-bin
 ```
 
-### Manual (any AUR helper)
+Then:
+```bash
+paru -Sya
+paru -S sandikodev/kiro-ide-bin
+```
+
+### Manual
 ```bash
 git clone https://github.com/sandikodev/kiro-ide-bin.git
 cd kiro-ide-bin
@@ -35,7 +45,6 @@ makepkg -si
 ### Once listed on AUR
 ```bash
 yay -S kiro-ide-bin
-# or
 paru -S kiro-ide-bin
 ```
 
